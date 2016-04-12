@@ -10,15 +10,44 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var primeTextfield: UITextField!
+    @IBOutlet weak var isItPrimeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func isItPrime(sender: AnyObject) {
+        if let answer = Int(primeTextfield.text!) {
+        var isPrime = true
+        
+            if answer == 1 {
+                isPrime = false
+            }
+        
+            if answer != 1 && answer != 2 {
+                for i in 2 ..< answer {
+                    if answer % i == 0 {
+                        isPrime = false
+                }
+                
+            }
+        }
+            if isPrime {
+                isItPrimeLabel.text = "\(answer) is a prime #"
+            } else {
+                isItPrimeLabel.text = "\(answer) is not a prime #"
+            }
+            
+        } else {
+            isItPrimeLabel.text = "Please enter a number!"
+        }
+    
     }
+
 
 
 }
